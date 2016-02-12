@@ -21,11 +21,12 @@ def lambda_handler(event, context):
     except:
         pass
 
-    sql = "INSERT INTO users (id, name, addrss) VALUES (%s, %s, %s)"
-    cursor.execute(sql, 10, "hogeho", "Tokyo")
+    sql = "INSERT INTO users (id, name, address) VALUES (%s, %s, %s)"
+    cursor.execute(sql, (10, "hoge_user", "Tokyo"))
+    cursor.execute(sql, (20, "fuga_user", "Kyoto"))
     connection.commit()
 
-    cursor.execute('SELECT * FROM cursor')
+    cursor.execute("SELECT * FROM users")
     for row in cursor:
         print("id=%d, user=%s, address=%s" % (row[0], row[1], row[2]))
 
